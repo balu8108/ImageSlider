@@ -1,5 +1,6 @@
 package com.codingstuff.imageslider
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,12 @@ class ImageAdapter(private val imageList: ArrayList<Int>, private val viewPager2
     RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageView);
+        val imageView: ImageView = itemView.findViewById(R.id.imageView)
+        init {
+            itemView.setOnClickListener {
+                it.context.startActivity(Intent(it.context,DetailsActivity::class.java))
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {

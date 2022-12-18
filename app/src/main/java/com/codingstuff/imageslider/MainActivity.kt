@@ -27,26 +27,8 @@ class MainActivity : AppCompatActivity() {
         viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                handler.removeCallbacks(runnable)
-                handler.postDelayed(runnable , 2000)
             }
         })
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        handler.removeCallbacks(runnable)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        handler.postDelayed(runnable , 2000)
-    }
-
-    private val runnable = Runnable {
-        viewPager2.currentItem = viewPager2.currentItem + 1
     }
 
     private fun setUpTransformer(){

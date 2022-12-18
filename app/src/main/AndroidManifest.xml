@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImageSlider">
         <activity
+            android:name=".DetailsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_details"
+            android:theme="@style/Theme.ImageSlider">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PanelLayout"
+            android:exported="false"
+            android:label="@string/title_activity_panellayout"
+            android:theme="@style/Theme.ImageSlider.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
