@@ -49,93 +49,10 @@ class DetailsActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun Greeting(name: String) {
-    /*Text(text = "Hello $name!")*/
-    /*BackdropScaffold(appBar = { *//*TODO*//* }, backLayerContent = { Text(text = "Hello $name!") }, frontLayerContent = {Text(text = "Hello $name!")}) {
-
-    }*/
-    val scaffoldState = rememberBackdropScaffoldState(initialValue = BackdropValue.Concealed)
-    val scope = rememberCoroutineScope()
-    BackdropScaffold(
-        scaffoldState = scaffoldState,
-        appBar =  {
-            TopAppBar(
-                title = { Text("Backdrop") },
-                navigationIcon = {
-                    if (scaffoldState.isConcealed) {
-                        IconButton(
-                            onClick = {
-                                scope.launch { scaffoldState.reveal() }
-                            }
-                        ) {
-                            Icon(
-                                Icons.Default.Menu,
-                                contentDescription = "Menu"
-                            )
-                        }
-                    } else {
-                        IconButton(
-                            onClick = {
-                                scope.launch { scaffoldState.conceal()}
-                            }
-                        ) {
-                            Icon(
-                                Icons.Default.Close,
-                                contentDescription = "Close"
-                            )
-                        }
-                    }
-                },
-                elevation = 0.dp,
-                backgroundColor = Color.Transparent
-            )
-        },
-        backLayerContent = {
-            Column{
-                Text(text = "Menu Item 1", modifier = Modifier.padding(8.dp), color = Color.White,style = TextStyle(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp,
-                    color = Color.Black
-                ))
-                Text(text = "Menu Item 1", modifier = Modifier.padding(8.dp), color = Color.White,style = TextStyle(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp,
-                    color = Color.Black
-                ))
-
-            }
-        },
-        frontLayerContent = {
-            /*Column(
-                Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment= Alignment.CenterHorizontally){
-                Text(text = "Front Layer",  textAlign = TextAlign.Center,color = Color.Black,style = TextStyle(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp,
-
-                    )
-                )
-            }*/
-            BackdropScaffold(appBar = { /*TODO*/ }, backLayerContent = { Text(text = "Hello $name!") }, frontLayerContent = {Text(text = "Hello $name!")}) {
-
-            }
-
-        },
-        peekHeight = 60.dp,
-
-
-        ) {
-
-    }
-}
-
 @Composable
 fun TopBar() {
     TopAppBar(
-        title = { Text(text = "stack example", fontSize = 18.sp) },
+        title = { Text(text = "Details", fontSize = 18.sp) },
         backgroundColor = colorResource(id = R.color.colorPrimary),
         contentColor = Color.White
     )
@@ -167,32 +84,6 @@ fun BottomSheetScaffoldScreen() {
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun BottomSheetScaffoldScreen2() {
-    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
-    val scope = rememberCoroutineScope()
-    BottomSheetScaffold(
-        sheetContent = {
-            BottomSheetContent()
-        },
-        scaffoldState = bottomSheetScaffoldState,
-        sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-        sheetBackgroundColor = colorResource(id = R.color.colorPrimary),
-        // sheetPeekHeight = 0.dp,
-        // scrimColor = Color.Red,  // Color for the fade background when you open/close the bottom sheet
-    ) {
-        Scaffold(
-            topBar = {  },
-            backgroundColor = colorResource(id = R.color.colorPrimaryDark)
-        ) { padding ->  // We need to pass scaffold's inner padding to content. That's why we use Box.
-            Box(modifier = Modifier.padding(padding)) {
-                BottomSheetScaffoldMainScreen(scope = scope, state = bottomSheetScaffoldState)
-            }
-        }
-    }
-}
-
 
 @Preview(showBackground = true)
 @Composable
@@ -206,9 +97,13 @@ fun BottomSheetScaffoldScreenPreview() {
 fun BottomSheetScaffoldMainScreen(scope: CoroutineScope, state: BottomSheetScaffoldState) {
     Column(
         Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            text = "When Thor's evil brother, Loki (Tom Hiddleston), gains access to the unlimited power of the energy cube called the Tesseract, Nick Fury (Samuel L. Jackson), director of S.H.I.E.L.D., initiates a superhero recruitment effort to defeat the unprecedented threat to Earth. Joining Fury's \"dream team\" are Iron Man (Robert Downey Jr.), Captain America (Chris Evans), the Hulk (Mark Ruffalo), Thor (Chris Hemsworth), the Black Widow (Scarlett Johansson) and Hawkeye (Jeremy Renner).",
+            color = Color.White
+        )
+        Spacer(modifier = Modifier.height(20.dp))
         Button(
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = colorResource(id = R.color.colorPrimary),
@@ -237,7 +132,7 @@ fun BottomSheetContent() {
     val context = LocalContext.current
     Column {
         BottomSheetListItem(
-            icon = R.drawable.img,
+            icon = R.drawable.ic_share,
             title = "Share",
             onItemClick = { title ->
                 Toast.makeText(
@@ -247,7 +142,7 @@ fun BottomSheetContent() {
                 ).show()
             })
         BottomSheetListItem(
-            icon = R.drawable.img,
+            icon = R.drawable.ic_link,
             title = "Get link",
             onItemClick = { title ->
                 Toast.makeText(
@@ -257,7 +152,7 @@ fun BottomSheetContent() {
                 ).show()
             })
         BottomSheetListItem(
-            icon = R.drawable.img,
+            icon = R.drawable.ic_edit,
             title = "Edit name",
             onItemClick = { title ->
                 Toast.makeText(
@@ -267,7 +162,7 @@ fun BottomSheetContent() {
                 ).show()
             })
         BottomSheetListItem(
-            icon = R.drawable.img,
+            icon = R.drawable.ic_delete,
             title = "Delete collection",
             onItemClick = { title ->
                 Toast.makeText(
